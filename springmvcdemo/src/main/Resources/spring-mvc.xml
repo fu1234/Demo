@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!--&lt;!&ndash; spring3使用&ndash;&gt;-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!--注意修改你包的路径-->
+                <prop key="com.coolwen.springjdbc.exception.UserException">error</prop>
+                <prop key="java.lang.NullPointerException">error</prop>
+                <prop key="java.lang.RuntimeException">error</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- spring4使用 -->
+    <!--<mvc:view-resolvers>-->
+    <!--<mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp"/>-->
+    <!--</mvc:view-resolvers>-->
+
+    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
+        <!--<property name="exceptionMappings">-->
+            <!--<props>-->
+                <!--&lt;!&ndash;注意修改你包的路径&ndash;&gt;-->
+                <!--<prop key="com.coolwen.springmvc.exception.UserException">error</prop>-->
+                <!--<prop key="java.lang.NullPointerException">error</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+    <!--将静态文件指定在某个文件夹中统一进行处理避免被springmvc拦截-->
+    <mvc:resources mapping="/resources/**" location="resources/"/>
+
+</beans>
+
